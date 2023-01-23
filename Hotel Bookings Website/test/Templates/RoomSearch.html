@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>rooms</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='styles/room.css') }}"> 
+</head>
+<body> 
+  <div data-role="page" data-url="{{ url_for('RoomSearch') }}">
+    {%for messages in get_flashed_messages() %}
+
+    <div class="alert">
+
+          <p>{{message}}</p>
+
+   </div>
+
+{%endfor%}
+  <div class="main">
+    <div class="navbar">
+        <div class="icon">
+            
+            <img src="{{ url_for('static',filename='styles/logo.jpg') }}" class="logo">
+        </div>
+
+        <div class="menu">
+            <ul>
+              li><a href="index.html">HOME</a></li>
+              <li><a href="book.html#about">ABOUT</a></li>
+              <li><a href="book.html#packages">OFFERS</a></li>
+              <li><a href="room.html">ROOMS</a></li>
+              <li><a href="book.html#contact">CONTACT</a></li>
+              <li><a href="room">Book Now</a></li>
+              <li><a href="history.html">Profile</a></li>
+            </ul>
+        </div>
+
+    </div>
+</div>
+    <section class="offer mtop" id="services">
+        <div class="container">
+          <div class="heading">
+            <h1>EXPLORE OUR ROOMS </h1>
+
+          </div>
+    
+          {%for room in rooms%}
+          <form action="#" method="post">
+            <div class="box flex">
+              <div class="left">
+                <img src="{{ room['image'] }}" alt="">
+              </div>
+              <div class="right">
+                <h4>{{room["roomtype"]}}</h4>
+                
+                <p> Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
+                <h5>From {{room["price"]}}$/night</h5>
+               
+                <button class="flex1" name='submit_button' value="{{room['_id']}}">
+                  <span>Book now</span>
+                </button>
+                
+                  <i class="fas fa-arrow-circle-right"></i>
+                </button>
+              </div>
+            </div>
+          </form>
+            {%endfor%}
+  
+
+        </div>
+      </div>
+      </section>
+      
+</body>
